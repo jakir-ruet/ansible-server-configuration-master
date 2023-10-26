@@ -12,6 +12,16 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 ## Basic of Ansible
 
+<ol>
+   <li><b>Control node</b>: Which Ansible works on</li>
+   <li><b></b></li>
+   <li><b></b></li>
+   <li><b></b></li>
+   <li><b></b></li>
+   <li><b></b></li>
+   <li><b></b></li>
+</ol>
+
 ## Courtesy of Jakir,
 
 <a href="https://www.linkedin.com/in/jakir-ruet/">LinkedIn</a>
