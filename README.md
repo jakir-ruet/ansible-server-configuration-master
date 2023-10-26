@@ -22,9 +22,13 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
    <li><b>Ad-Hoc Command</b>: automated a single task managed nodes</li>
 </ol>
 
-## Ansible Architecture
+## Architecture
 
 ![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
+
+## Project Illustration
+
+![Ansible Project!](/img/ansible-project.png 'ansible-project')
 
 ## Courtesy of Jakir,
 
