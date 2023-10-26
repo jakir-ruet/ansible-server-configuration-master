@@ -13,14 +13,18 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 ## Basic of Ansible
 
 <ol>
-   <li><b>Control Node</b>: Which Ansible works on</li>
+   <li><b>Control Node</b>: which Ansible works on</li>
    <li><b>Managed Nodes</b>: are the networks devices or servers</li>
    <li><b>Inventory</b>: is the list of managed nodes</li>
    <li><b>Modules</b>: are the units of code Ansible executes</li>
    <li><b>Tasks</b>: are the units of action in Ansible</li>
-   <li><b>Playbooks</b> are ordered lists of tasks</li>
+   <li><b>Playbooks</b>: are ordered lists of tasks</li>
    <li><b>Ad-Hoc Command</b>: automated a single task managed nodes</li>
 </ol>
+
+## Architecture
+
+![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
 
 ## Courtesy of Jakir,
 
