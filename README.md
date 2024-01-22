@@ -28,10 +28,10 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 ## Courtesy of Jakir
 
-[LinkedIn](href="https://www.linkedin.com/in/jakir-ruet/")
-[Facebook](href="https://www.facebook.com/jakir.ruet")
-[GitHub](href="https://github.com/jakir-ruet")
-[Skype](href="https://web.skype.com/?openPstnPage=true")
+LinkedIn [Profile](https://www.linkedin.com/in/jakir-ruet/),
+Facebook [Profile](https://www.facebook.com/jakir.ruet),
+GitHub [Profile](https://github.com/jakir-ruet),
+Skype [Profile](https://web.skype.com/?openPstnPage=true)
 
 ## Have a good day, stay with me
 
