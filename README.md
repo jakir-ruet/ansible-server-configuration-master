@@ -32,6 +32,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 #### Architecture
 
 ![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
+
 [CMDB: Configuration Manangement DataBase]
 
 #### Project Illustration
