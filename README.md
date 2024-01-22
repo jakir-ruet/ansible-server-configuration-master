@@ -10,21 +10,35 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 ## Basic of Ansible
 
-   1. ***Control Node:*** which Ansible works on
-   2. ***Managed Nodes:*** are the networks devices or servers
-   3. ***Inventory:*** is the list of managed nodes
-   4. ***Modules:*** are the units of code Ansible executes
-   5. ***Tasks:*** are the units of action in Ansible
-   6. ***Playbooks:*** are ordered lists of tasks
-   7. ***Ad-Hoc Command:*** automated a single task managed nodes
+   1. ***Tasks:***
+      Tasks are the units of action in Ansible.
+   2. ***Control Node:***
+      Refers to the machine where Ansible is installed and from which you manage and run Ansible tasks and playbooks. This is the system where you write, store, and execute your Ansible playbooks and where the Ansible command-line tools are installed.
+   3. ***Managed Nodes:***
+      It is a system or device that Ansible manages and configures. It is the target machine where Ansible executes tasks defined in playbooks.
+   4. ***Inventory:***
+      Ansible uses an inventory file to define and organize the hosts that it manages. The inventory file can be static or dynamic, and it allows you to group hosts based on different criteria.
+   5. ***Modules:***
+      Ansible uses modules to perform specific tasks on managed nodes. Modules are reusable, idempotent components that abstract the underlying implementation details. There are modules for tasks like package installation, file manipulation, user management, etc.
+   6. ***Playbooks:***
+      Ansible uses playbooks, which are YAML files that define a set of tasks to be executed on remote hosts. Playbooks can describe configurations, orchestrate multiple tasks, and define relationships between hosts.
+   7. ***Ad-Hoc Command:***
+      Ansible can also be used to execute ad-hoc commands on the command line, allowing you to perform quick tasks without writing a playbook.
+   8. ***Idempotency:***
+      Ansible follows the idempotent principle, which means that if a task is run multiple times, the result should be the same as if it were run once. This makes it safe to re-run Ansible playbooks without causing unintended side effects.
+   9. ***SSH:***
+      Ansible communicates with managed nodes over SSH, making it agentless. This eliminates the need for installing and managing agent software on the managed hosts.
 
 #### Architecture
 
 ![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
+[CMDB: Configuration Manangement DataBase]
 
 #### Project Illustration
 
 ![Ansible Project!](/img/ansible-project.png 'ansible-project')
+
+Ansible [Install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#)
 
 ### Courtesy of Jakir
 
