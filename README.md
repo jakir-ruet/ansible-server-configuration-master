@@ -10,30 +10,30 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 ## Basic of Ansible
 
-   1. Control Node: which Ansible works on
-   2. Managed Nodes: are the networks devices or servers
-   3. Inventory: is the list of managed nodes
-   4. Modules: are the units of code Ansible executes
-   5. Tasks: are the units of action in Ansible
-   6. Playbooks: are ordered lists of tasks
-   7. Ad-Hoc Command: automated a single task managed nodes
+   1. ***Control Node:*** which Ansible works on
+   2. ***Managed Nodes:*** are the networks devices or servers
+   3. ***Inventory:*** is the list of managed nodes
+   4. ***Modules:*** are the units of code Ansible executes
+   5. ***Tasks:*** are the units of action in Ansible
+   6. ***Playbooks:*** are ordered lists of tasks
+   7. ***Ad-Hoc Command:*** automated a single task managed nodes
 
-## Architecture
+#### Architecture
 
 ![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
 
-## Project Illustration
+#### Project Illustration
 
 ![Ansible Project!](/img/ansible-project.png 'ansible-project')
 
-## Courtesy of Jakir
+### Courtesy of Jakir
 
 LinkedIn [Profile](https://www.linkedin.com/in/jakir-ruet/),
 Facebook [Profile](https://www.facebook.com/jakir.ruet),
 GitHub [Profile](https://github.com/jakir-ruet),
 Skype [Profile](https://web.skype.com/?openPstnPage=true)
 
-## Have a good day, stay with me
+### Have a good day, stay with me
 
 [youtube-shield]: https://img.shields.io/badge/-Youtube-black.svg?style=flat-square&logo=youtube&color=blue&logoColor=red
 [youtube-url]: https://www.youtube.com/@LapisSoft/featured
