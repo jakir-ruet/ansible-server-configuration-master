@@ -19,9 +19,40 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
    4. ***Inventory:***
       Ansible uses an inventory file to define and organize the hosts that it manages. The inventory file can be static or dynamic, and it allows you to group hosts based on different criteria.
    5. ***Modules:***
-      Ansible uses modules to perform specific tasks on managed nodes. Modules are reusable, idempotent components that abstract the underlying implementation details. There are modules for tasks like package installation, file manipulation, user management, etc.
+      Is small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more.
+      ```
+         - name: Copy a file to remote hosts
+           hosts: my_servers
+           tasks:
+              - name: Copy file 
+                copy:
+                  src: /path/to/local/file.txt
+                  dest: /path/on/remote/file.txt
+      ```
    6. ***Playbooks:***
-      Ansible uses playbooks, which are YAML files that define a set of tasks to be executed on remote hosts. Playbooks can describe configurations, orchestrate multiple tasks, and define relationships between hosts.
+      Ansible playbook is a structured configuration file used to define a set of tasks and automate the execution of those tasks on a group of hosts. Playbooks are written in YAML. A playbook consists of one or more plays, where each play defines a set of tasks to be executed on a specified group of hosts.
+      ```
+         - name: Configure Web Servers
+           hosts: web_servers
+           become: true  # Run tasks with elevated privileges (sudo)
+
+           tasks:
+               - name: Ensure Apache is installed
+                 apt:
+                    name: apache2
+                    state: present
+
+               - name: Ensure Apache service is running
+                 service:
+                    name: apache2
+                    state: started
+
+               - name: Copy index.html to the web server
+                 copy:
+                    src: /path/to/local/index.html
+                    dest: /var/www/html/index.html
+      ```
+      
    7. ***Ad-Hoc Command:***
       Ansible can also be used to execute ad-hoc commands on the command line, allowing you to perform quick tasks without writing a playbook.
    8. ***Idempotency:***
