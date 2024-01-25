@@ -99,15 +99,15 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
          ansible web_servers -i inventory_file -m command -a "uptime"
       ```
 
+#### How to works
+
+![Ansible Project!](/img/ansible-project.png 'ansible-project')
+
 #### Architecture
 
 ![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
 
 [CMDB: Configuration Manangement DataBase]
-
-#### Project Illustration
-
-![Ansible Project!](/img/ansible-project.png 'ansible-project')
 
 Ansible [Install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#)
 
