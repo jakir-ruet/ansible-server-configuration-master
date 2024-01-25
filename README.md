@@ -90,6 +90,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
       ``` bash
          ansible <pattern> -i <inventory> -m <module> -a "<module_arguments>"
       ```
+      - pattern is Specifies the hosts/groups of hosts to which the command should be applied.
       - -i is inventory
       - -m is module
       - -a is module_arguments
