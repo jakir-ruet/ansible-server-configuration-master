@@ -12,7 +12,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
    1. ***Tasks:***
       A task is the smallest unit of work within a playbook. A task represents a single action or operation that should be performed on a target host or a group of hosts.
-      ```
+      ``` YAML Format
          tasks:
             - name: Install Apache
               apt:
@@ -49,7 +49,8 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
       ```
    5. ***Modules:***
       Is small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more.
-      ```
+
+      ``` YAML Format
          - name: Copy a file to remote hosts
            hosts: my_servers
            tasks:
@@ -60,7 +61,8 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
       ```
    6. ***Playbooks:***
       Ansible playbook is a structured configuration file used to define a set of tasks and automate the execution of those tasks on a group of hosts. Playbooks are written in YAML. A playbook consists of one or more plays, where each play defines a set of tasks to be executed on a specified group of hosts.
-      ```
+
+      ``` YAML Format
          - name: Configure Web Servers
            hosts: web_servers
            become: true  # Run tasks with elevated privileges (sudo)
