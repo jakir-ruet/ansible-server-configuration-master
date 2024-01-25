@@ -85,11 +85,19 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
       ```
       
    7. ***Ad-Hoc Command:***
-      Ansible can also be used to execute ad-hoc commands on the command line, allowing you to perform quick tasks without writing a playbook.
-   8. ***Idempotency:***
-      Ansible follows the idempotent principle, which means that if a task is run multiple times, the result should be the same as if it were run once. This makes it safe to re-run Ansible playbooks without causing unintended side effects.
-   9. ***SSH:***
-      Ansible communicates with managed nodes over SSH, making it agentless. This eliminates the need for installing and managing agent software on the managed hosts.
+      An ad-hoc command is a one-time command that you run from the command line, without the need to create a playbook. Ad-hoc commands are useful for performing quick tasks, checking the status of systems, or making immediate changes across a group of hosts.
+      Syntax
+      ``` bash
+         ansible <pattern> -i <inventory> -m <module> -a "<module_arguments>"
+      ```
+      - -i is inventory
+      - -m is module
+      - -a is module_arguments
+
+      Example
+      ``` bash
+         ansible web_servers -i inventory_file -m command -a "uptime"
+      ```
 
 #### Architecture
 
