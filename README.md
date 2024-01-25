@@ -2,7 +2,7 @@
 [![Facebook-Page][facebook-shield]][facebook-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Visit Us [Lapis Soft](href="http://www.lapissoft.com")
+## Visit Us [Lapis Soft](http://www.lapissoft.com)
 
 ### Ansible
 
@@ -11,13 +11,42 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 ## Basic of Ansible
 
    1. ***Tasks:***
-      Tasks are the units of action in Ansible.
+      A task is the smallest unit of work within a playbook. A task represents a single action or operation that should be performed on a target host or a group of hosts.
+      ```
+         tasks:
+            - name: Install Apache
+              apt:
+                 name: apache2
+                 state: present
+      ```
    2. ***Control Node:***
       Refers to the machine where Ansible is installed and from which you manage and run Ansible tasks and playbooks. This is the system where you write, store, and execute your Ansible playbooks and where the Ansible command-line tools are installed.
    3. ***Managed Nodes:***
       It is a system or device that Ansible manages and configures. It is the target machine where Ansible executes tasks defined in playbooks.
    4. ***Inventory:***
-      Ansible uses an inventory file to define and organize the hosts that it manages. The inventory file can be static or dynamic, and it allows you to group hosts based on different criteria.
+      The inventory is a configuration file that defines the hosts and groups of hosts that Ansible will manage. The inventory file specifies the target systems where Ansible playbooks and commands will be executed. It is a crucial component that helps Ansible understand the infrastructure it is working with.
+      ``` YAML Format
+         all:
+            hosts:
+               server1:
+                  ansible_host: 192.168.1.101
+               server2:
+                  ansible_host: 192.168.1.102
+            children:
+               database_servers:
+                  hosts:
+                  db_server:
+                     ansible_host: 192.168.1.103
+      ```
+
+      ``` INI Format
+         [web_servers]
+         server1 ansible_host=192.168.1.101
+         server2 ansible_host=192.168.1.102
+
+         [database_servers]
+         db_server ansible_host=192.168.1.103
+      ```
    5. ***Modules:***
       Is small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more.
       ```
