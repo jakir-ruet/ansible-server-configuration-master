@@ -99,6 +99,10 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
       ``` bash
          ansible web_servers -i inventory_file -m command -a "uptime"
       ```
+   8. ***API:***
+      Here API is special types of modules that work as transport in cloud services such Python API.
+   9. ***Plugin:***
+      Plugins are modular pieces of code that add functionality to various parts of the Ansible execution process. They enhance the core functionality of Ansible by providing additional capabilities or by allowing you to customize and extend certain aspects of the automation process.
 
 #### How to works
 
