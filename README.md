@@ -48,7 +48,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
          db_server ansible_host=192.168.1.103
       ```
    5. ***Modules:***
-      Is small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more.
+      Is a small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more.
 
       ``` YAML Format
          - name: Copy a file to remote hosts
