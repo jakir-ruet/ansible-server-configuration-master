@@ -102,7 +102,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
    8. ***API:***
       Here API is special types of modules that work as transport in cloud services such Python API.
    9. ***Plugin:***
-      Plugins are modular pieces of code that add functionality to various parts of the Ansible execution process. They enhance the core functionality of Ansible by providing additional capabilities or by allowing you to customize and extend certain aspects of the automation process.
+      Plugins are modular pieces of code that add functionality to various parts of the Ansible execution process. They enhance the core functionality of Ansible by providing additional capabilities or by allowing you to customize and extend certain aspects of the automation process such as cache plugin, action plugin, callback plugin.
 
 #### How to works
 
@@ -114,7 +114,12 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 [CMDB: Configuration Manangement DataBase]
 
-Ansible [Install](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#)
+#### Install Process
+
+Here we are install on Ubuntu Server 22.04 Machine.
+``` bash
+   sudo apt-get install ansible
+```
 
 ### Courtesy of Jakir
 
