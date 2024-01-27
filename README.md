@@ -151,12 +151,12 @@ Add/Update the following line in ansible.cfg file.
    inventory = /etc/ansible/hosts
    sudo_user = root
 ```
-Create a user in three instance
+Create a user in three instances
 ``` bash
    adduser ansible
    passwd 054003
 ```
-To give 'sudo privillages' to 'ansible' user
+To give 'sudo privillages' to 'ansible' user in node instances.
 ``` bash
    sudo visudo
 ```
