@@ -116,9 +116,61 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 #### Install Process
 
-Here we are install on Ubuntu Server 22.04 Machine. We need three server VM one is Ansible server & other two work as node.
+Here we are install on Ubuntu Server 22.04 Machine. We need three server VMs one is Ansible server & other two work as node.
 ``` bash
    sudo apt-get install ansible
+   
+```
+Or
+``` bash
+   add-apt-repository ppa:ansible/ansible
+```
+``` bash
+   ansible --version
+```
+Active the bash completion support we may install these.
+``` bash
+   apt install python3-argcomplete
+   activate-global-python-argcomplete3
+```
+For allow nodes into the absible server, create a group on 'hosts' file. A group show as follows;
+``` bash
+   nano /etc/ansible/hosts
+```
+``` bash
+   [AnsibleGroup] # Group Name
+   172.16.102.130 # Node #1 IP
+   172.16.102.131 # Node #2 IP
+```
+And update the ansible.cng file
+``` bash
+   nano /ete/ansible/ansible.cfg
+```
+Add/Update the following line in ansible.cfg file.
+``` bash
+   inventory = /etc/ansible/hosts
+   sudo_user = root
+```
+Create a user in three instance
+``` bash
+   adduser ansible
+   passwd 054003
+```
+To give 'sudo privillages' to 'ansible' user
+``` bash
+   sudo visudo
+```
+And put this line below %admin user of all node instances
+```bash
+   %ansible ALL=(ALL) NOPASSWORD:ALL
+```
+Go to ansible server login as ansible user
+```bash
+   su - ansible
+```
+Try to connect node instances
+```bash
+   ssh 172.16.102.130 # Node #1 IP
 ```
 
 ### Courtesy of Jakir
