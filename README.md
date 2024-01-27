@@ -172,6 +172,27 @@ Try to connect node instances
 ```bash
    ssh 172.16.102.130 # Node #1 IP
 ```
+For security purpose we uncomments/changes in sshd_config file as follows;
+```bash
+   sudo nano /etc/ssh/sshd_config
+```
+```bash
+   PubkeyAuthentication yes
+   PasswordAuthentication yes
+```
+Restart the ssh service & check status
+```bash
+   service ssh restart
+```
+```bash
+   service ssh status
+```
+```bash
+   su - ansible # in server
+```
+```bash
+   ssh 172.16.102.130 # node IP
+```
 
 ### Courtesy of Jakir
 
