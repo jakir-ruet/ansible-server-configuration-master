@@ -161,7 +161,7 @@ To give 'sudo privillages' to 'ansible-usr' user in node instances.
 ```
 And put this line below %admin user of all node instances
 ```bash
-   %ansible-usr ALL=(ALL) NOPASSWORD:ALL
+   %ansible-usr ALL=(ALL) NOPASSWD:ALL
 ```
 Go to ansible server login as ansible-usr user
 ```bash
