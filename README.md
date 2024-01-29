@@ -141,7 +141,7 @@ For allow nodes into the absible server, create a group on 'hosts' file. A group
    172.16.102.130 # Node #1 IP
    172.16.102.131 # Node #2 IP
 ```
-And update the ansible.cng file
+And update the ansible.cfg file
 ``` bash
    nano /ete/ansible/ansible.cfg
 ```
@@ -152,20 +152,20 @@ Add/Update the following line in ansible.cfg file.
 ```
 Create a user in three instances
 ``` bash
-   adduser ansible
+   adduser ansible-usr
    passwd 054003
 ```
-To give 'sudo privillages' to 'ansible' user in node instances.
+To give 'sudo privillages' to 'ansible-usr' user in node instances.
 ``` bash
    sudo visudo
 ```
 And put this line below %admin user of all node instances
 ```bash
-   %ansible ALL=(ALL) NOPASSWORD:ALL
+   %ansible-usr ALL=(ALL) NOPASSWORD:ALL
 ```
-Go to ansible server login as ansible user
+Go to ansible server login as ansible-usr user
 ```bash
-   su - ansible
+   su - ansible-usr
 ```
 Try to connect node instances
 ```bash
@@ -187,7 +187,7 @@ Restart the ssh service & check status
    service ssh status
 ```
 ```bash
-   su - ansible # in server
+   su - ansible-usr # in server
 ```
 ```bash
    ssh 172.16.102.130 # node IP
