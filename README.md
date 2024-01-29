@@ -116,7 +116,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 #### Install Process
 
-Here we are install on Ubuntu Server 22.04 Machine. We need three server VMs one is Ansible server & other two work as node.
+Here we are installing on Ubuntu Server 22.04 Machine. We need three server VMs one is an Ansible server & other two work as nodes.
 ``` bash
    add-apt-repository ppa:ansible/ansible
 ```
@@ -132,7 +132,7 @@ Active the bash completion support we may install these.
    apt install python3-argcomplete
    activate-global-python-argcomplete3
 ```
-For allow nodes into the absible server, create a group on 'hosts' file. A group show as follows;
+To allow nodes into the ansible server, create a group on the 'hosts' file. A group show as follows;
 ``` bash
    nano /etc/ansible/hosts
 ```
@@ -159,19 +159,22 @@ To give 'sudo privillages' to 'ansible-usr' user in node instances.
 ``` bash
    sudo visudo
 ```
-And put this line below %admin user of all node instances
+And put this line below %admin user of three instances
 ```bash
    %ansible-usr ALL=(ALL) NOPASSWD:ALL
 ```
-Go to ansible server login as ansible-usr user
+Login as ansible-usr user into three instances
 ```bash
    su - ansible-usr
+```
+```bash
+   sudo apt-get update
 ```
 Try to connect node instances
 ```bash
    ssh 172.16.102.130 # Node #1 IP
 ```
-For security purpose we uncomments/changes in sshd_config file as follows;
+Here, access is denied, or a password is required. For this purpose, we uncomment/change the sshd_config file on three instances. It must be done under the root user of these instances.
 ```bash
    sudo nano /etc/ssh/sshd_config
 ```
@@ -186,11 +189,22 @@ Restart the ssh service & check status
 ```bash
    service ssh status
 ```
+Login as 'ansible-usr' into ansible server.
 ```bash
    su - ansible-usr # in server
 ```
+Try to access (two) node instances from the ansible server under the 'ansible-usr'. This is very disturbing because it is asking for the pass for each login.
 ```bash
    ssh 172.16.102.130 # node IP
+```
+
+Disable the password asking each time while logging the ansible server (ansible-usr) to the node instance by generating ssh-key.
+```bash
+   ssh-keygen # not use the password
+   ls -a
+   cd .ssh
+   ssh-copy-id ansible-usr@172.16.102.132 # from server instance (here 172.16.102.132 is node 1 IP)
+   ssh-copy-id ansible-usr@172.16.102.133 # from server instance (here 172.16.102.133 is node 2 IP)
 ```
 
 ### Courtesy of Jakir
