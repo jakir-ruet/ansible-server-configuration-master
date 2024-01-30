@@ -218,7 +218,7 @@ Checking specific node group
 ansible AnsibleGroup -m ping
 ```
 Checking specific node group and specific node using index
-```shell
+```bash
 ansible AnsibleGroup[0] -m ping
 ```
 
