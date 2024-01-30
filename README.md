@@ -235,12 +235,34 @@ Create a file only selected node
 ```bash
 ansible AnsibleGroup[0] -a "touch black_berry1.txt"
 ```
-Create a directory on all connected node
+Create a file on ansible server
 ```bash
-ansible all -a "mkdir black_berry"
+touch demo.txt
 ```
-
-
+Copy this file and paste to ansible node 1.
+```bash
+ansible AnsibleGroup[0] -m copy -a "src=./demo.txt dest=/tmp/demo.txt"
+```
+See the in detail of connected node
+```bash
+ansible AnsibleGroup -m setup
+```
+Check the OS Info as as OS family.
+```bash
+ansible AnsibleGroup -m setup -a 'filter=ansible_os_family'
+```
+Check the OS momory.
+```bash
+ansible AnsibleGroup -m setup -a 'filter=ansible_os_mb'
+```
+CPU use process
+```bash
+ansible AnsibleGroup -m shell -a "top -c -b | head -10"
+```
+Memory consume process
+```bash
+ansible AnsibleGroup -m shell -a "ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%mem | head"
+```
 ### Courtesy of Jakir
 
 LinkedIn [Profile](https://www.linkedin.com/in/jakir-ruet/),
