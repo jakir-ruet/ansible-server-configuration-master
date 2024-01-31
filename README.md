@@ -263,6 +263,26 @@ Memory consume process
 ```bash
 ansible AnsibleGroup -m shell -a "ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%mem | head"
 ```
+
+#### Playbook
+```bash
+sudo nano install-apache.yaml
+```
+Write the apache playbook as first playbook.
+```YAML
+---
+- name: Initialize the apache webserver
+  hosts: ansiblelearn
+  become: true
+  tasks:
+  - name: install apache2
+    apt: name=apache2 update_cache=yes state=latest
+```
+Check the playbook work or not.
+```bash
+ansible-paybook apache-install.yaml --check
+```
+
 ### Courtesy of Jakir
 
 LinkedIn [Profile](https://www.linkedin.com/in/jakir-ruet/),
