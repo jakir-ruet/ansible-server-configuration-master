@@ -293,9 +293,11 @@ Write the apache playbook as first playbook.
   - name: install apache2 package
     apt: 
       name: apache2
+      state: latest
   - name: add php support for apache
     apt:
       name: libapache2-mod-php
+      state: latest
 ```
 Check the playbook work or not.
 ```bash
