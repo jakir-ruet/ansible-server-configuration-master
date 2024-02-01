@@ -280,10 +280,10 @@ ansible AnsibleGroup -m shell -a "ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%mem | h
 ```bash
 sudo nano install_apache.yaml
 ```
-Write the apache playbook as first playbook.
+Write a playbook for apache install.
 ```YAML
 ---
-- name: Apache Web Server
+- name: Apache Web Server Install
   hosts: all
   become: true
   tasks:
@@ -307,6 +307,33 @@ Install apache to all nodes
 ```bash
 ansible-playbook --ask-become-pass install_apache.yaml
 ```
+```bash
+sudo nano remove_apache.yaml
+```
+Write a playbook for apache remove.
+```YAML
+---
+- name: Apache Web Server Remove
+  hosts: all
+  become: true
+  tasks:
+  - name: remove repository index
+    apt:
+      update_cache: yes
+  - name: remove apache2 package
+    apt: 
+      name: apache2
+      state: absent
+  - name: remove php support for apache
+    apt:
+      name: libapache2-mod-php
+      state: absent
+```
+Remove apache to all nodes
+```bash
+ansible-playbook --ask-become-pass remove_apache.yaml
+```
+
 It has been installed successfully try to see to the browser. You will show the default page of Apache.
 ### Courtesy of Jakir
 
