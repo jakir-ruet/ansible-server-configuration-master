@@ -223,6 +223,18 @@ ansible AnsibleGroup[0] -m ping
 ```
 
 ##### File operations
+Checking available hosts
+```bash
+ansible all --list-hosts
+```
+Checking all connected node's information
+```bash
+ansible all -m gather_facts
+```
+Checking specific connected node's information
+```bash
+ansible all -m gather_facts --limit NodeIPAddress
+```
 Checking files/directories
 ```bash
 ansible AnsibleGroup -a "ls"
@@ -266,23 +278,28 @@ ansible AnsibleGroup -m shell -a "ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%mem | h
 
 #### Playbook
 ```bash
-sudo nano install-apache.yaml
+sudo nano install_apache.yaml
 ```
 Write the apache playbook as first playbook.
 ```YAML
 ---
-- name: Initialize the apache webserver
-  hosts: ansiblelearn
+- name: Apache webserver
+  hosts: all
   become: true
   tasks:
-  - name: install apache2
-    apt: name=apache2 update_cache=yes state=latest
+  - name: install apache2 package
+    apt: 
+      name: apache2
 ```
 Check the playbook work or not.
 ```bash
-ansible-paybook apache-install.yaml --check
+ansible-paybook install_apache.yaml --check
 ```
-
+Install apache to all nodes
+```bash
+ansible-playbook --ask-become-pass install_apache.yaml
+```
+It has been installed successfully try to see to the browser. You will show the default page of Apache.
 ### Courtesy of Jakir
 
 LinkedIn [Profile](https://www.linkedin.com/in/jakir-ruet/),
