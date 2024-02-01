@@ -283,13 +283,19 @@ sudo nano install_apache.yaml
 Write the apache playbook as first playbook.
 ```YAML
 ---
-- name: Apache webserver
+- name: Apache Web Server
   hosts: all
   become: true
   tasks:
+  - name: update repository index
+    apt:
+      update_cache: yes
   - name: install apache2 package
     apt: 
       name: apache2
+  - name: add php support for apache
+    apt:
+      name: libapache2-mod-php
 ```
 Check the playbook work or not.
 ```bash
