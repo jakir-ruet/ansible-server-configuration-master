@@ -341,12 +341,6 @@ It has been installed successfully try to see to the browser. You will show the 
 [![Facebook-Page][facebook-shield-jakir]][facebook-url-jakir]
 [![Youtube][youtube-shield-jakir]][youtube-url-jakir]
 
-
-LinkedIn [Profile](https://www.linkedin.com/in/jakir-ruet/),
-Facebook [Profile](https://www.facebook.com/jakir.ruet),
-GitHub [Profile](https://github.com/jakir-ruet),
-Skype [Profile](https://web.skype.com/?openPstnPage=true)
-
 ### Have a good day, stay with me
 <!-- Personal profile -->
 
