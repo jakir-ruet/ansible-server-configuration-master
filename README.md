@@ -349,7 +349,7 @@ It has been installed successfully try to see to the browser. You will show the 
 [facebook-shield-jakir]: https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=Facebook&logoColor=white
 [facebook-url-jakir]: https://www.facebook.com/jakir-ruet/
 [youtube-shield-jakir]: https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white
-[youtube-urls-jakir]: https://www.youtube.com/@mjakaria-ruet/featured
+[youtube-url-jakir]: https://www.youtube.com/@mjakaria-ruet/featured
 
 <!-- Company profile -->
 
