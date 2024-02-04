@@ -293,10 +293,12 @@ Write a playbook for apache install.
   - name: install apache2 package
     apt: 
       name: apache2
+      update_cache: yes
       state: latest
   - name: add php support for apache
     apt:
       name: libapache2-mod-php
+      update_cache: yes
       state: latest
 ```
 Check the playbook work or not.
@@ -333,8 +335,57 @@ Remove apache to all nodes
 ```bash
 ansible-playbook --ask-become-pass remove_apache.yaml
 ```
-
 It has been installed successfully try to see to the browser. You will show the default page of Apache.
+
+#### [Variable](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html)
+Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including ***lists*** and ***dictionaries***. You can define these variables 
+- In your playbooks, 
+- In your inventory, 
+- In reusable files or roles, or 
+- At the command line.
+***NB:*** You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
+
+***Valid variable names***
+- Only letters (a...z, A...Z), numbers (1-9) & underscrore (_) use in variabe.
+- Variable may begin with underscrore (_)
+- Such as myvar, my_var, _my_var.
+
+Checking system information
+```bash
+ansible all -m setup
+```
+
+Checking specific system information
+```bash
+ansible AnsibleGroup -m setup -a 'filter=ansible_hostname'
+```
+##### First variable ***in playbook***
+Create a playbook
+```bash
+nano first_variable-playbook.yaml
+```
+Create first var
+```YAML
+---
+- hosts: all
+  vars:
+   - username: Jakir
+   - designation: IT Manager
+  tasks:
+   - name: my first variable in playbook
+     debug:
+       msg: "Your name is {{username}}, Designation is {{designation}}"
+```
+Using an ***inventory*** file named inventory and the ***jakir*** user to connect to the remote servers:
+```bash
+ansible-playbook first_variable-playbook.yaml
+```
+Or
+```bash
+ansible-playbook -i inventory first_variable-playbook.yaml -u jakir
+```
+
+
 
 ### Courtesy of Jakir
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]
