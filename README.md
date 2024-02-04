@@ -360,12 +360,13 @@ Checking specific system information
 ```bash
 ansible AnsibleGroup -m setup -a 'filter=ansible_hostname'
 ```
+
 ##### First variable ***in playbook***
-Create a playbook
-```bash
-nano first_variable-playbook.yaml
-```
 Create first var in playbook
+```bash
+nano var-apache-playbook.yaml
+```
+Writing this YAML code in `var-apache-playbook.yaml`
 ```YAML
 ---
 - hosts: all
@@ -377,29 +378,51 @@ Create first var in playbook
      debug:
        msg: "Your name is {{username}}, Designation is {{designation}}"
 ```
+
 Run the var in playbook
 ```bash
-ansible-playbook first_variable-playbook.yaml
+ansible-playbook var-apache-playbook.yaml
 ```
 Or Using an ***inventory*** file named inventory and the ***jakir*** user to connect to the remote servers:
 ```bash
-ansible-playbook -i inventory first_variable-playbook.yaml -u jakir
+ansible-playbook -i inventory var-apache-playbook.yaml -u jakir
 ```
 
-##### First variable ***new file/files***
-Create a var (first_vars-as-newfile)
+##### First var as a new file/files
+Create a var named is vars.yaml
 ```bash
-nano first_vars-as-newfile.yaml
+nano vars.yaml
 ```
-Type/Paste on (first_vars-as-newfile.yaml) variables as your expectation.
+Type/Paste on `vars.yaml` this line
 ```bash
 package_name: apache2
 ```
 
-Create a (install_apache_var.yaml) playbook
-```bash
+Create a playbook named `install-apache.yaml` and type these yaml code.
+```YAML
+---
+- name: Apache Web Server Install
+  hosts: all
+  become: true
 
+  tasks:
+  - include_vars: vars.yaml
+  - name: install apache2
+    apt: 
+      name={{package_name}}
+      update_cache=yes
+      state=latest
 ```
+
+Run the var in playbook
+```bash
+ansible-playbook install-apache.yaml
+```
+Or Using an ***inventory*** file named inventory to the remote servers:
+```bash
+ansible-playbook -i inventory install-apache.yaml -u jakir
+```
+
 
 ### Courtesy of Jakir
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]
