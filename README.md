@@ -47,8 +47,14 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
          [database_servers]
          db_server ansible_host=192.168.1.103
       ```
-   5. ***Modules:***
-      Is a small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more.
+   5. [***Modules:***](https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html)
+      Is a small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more on remote node. Some modules shown below list;
+      - Cloud Modules
+      - Clustering Modules
+      - Database Modules
+      - Messaging Modules
+      - Inventory Modules 
+      - Commands Modules and etc. 
 
       ``` YAML Format
          - name: Copy a file to remote hosts
@@ -112,7 +118,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 
 ![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
 
-[CMDB: Configuration Manangement DataBase]
+[CMDB: Configuration Management DataBase]
 
 #### Install Process
 
@@ -156,7 +162,7 @@ Create a user in three instances
 adduser ansible-usr
 passwd 054003
 ```
-To give 'sudo privillages' to 'ansible-usr' user in node instances.
+To give 'sudo privileges' to 'ansible-usr' user in node instances.
 ``` bash
 sudo visudo
 ```
@@ -263,7 +269,7 @@ Check the OS Info as as OS family.
 ```bash
 ansible AnsibleGroup -m setup -a 'filter=ansible_os_family'
 ```
-Check the OS momory.
+Check the OS memory.
 ```bash
 ansible AnsibleGroup -m setup -a 'filter=ansible_os_mb'
 ```
@@ -303,7 +309,7 @@ Write a playbook for apache install.
 ```
 Check the playbook work or not.
 ```bash
-ansible-paybook install_apache.yaml --check
+ansible-playbook install_apache.yaml --check
 ```
 Install apache to all nodes
 ```bash
@@ -347,8 +353,8 @@ Ansible uses variables to manage differences between systems. With Ansible, you 
 ***NB:*** You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
 
 ***Valid variable names***
-- Only letters (a...z, A...Z), numbers (1-9) & underscrore (_) use in variabe.
-- Variable may begin with underscrore (_)
+- Only letters (a...z, A...Z), numbers (1-9) & underscore (_) use in variable.
+- Variable may begin with underscore (_)
 - Such as myvar, my_var, _my_var.
 
 Checking system information
@@ -450,7 +456,7 @@ ansible-playbook simple-loop.yaml
 ```
 Or Run the var in playbook with mention the inventory & username
 ```bash
-ansible-playbook -i inventory isimple-loop.yaml -u jakir
+ansible-playbook -i inventory simple-loop.yaml -u jakir
 ```
 
 ```bash
