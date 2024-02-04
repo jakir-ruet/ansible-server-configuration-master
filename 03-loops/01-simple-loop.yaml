@@ -1,0 +1,14 @@
+---
+- name: Name of simple list
+  hosts: all
+  gather_facts: no
+  become: true
+  tasks:
+    - name: Add services
+      user:
+         name: "{{ item }}" # call the from loop
+         state: present
+      loop:
+         - user1
+         - user2
+         - user3

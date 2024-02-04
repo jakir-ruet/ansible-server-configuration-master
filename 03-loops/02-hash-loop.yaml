@@ -1,0 +1,16 @@
+---
+- name: iterating using hash
+  hosts: all
+  gather_facts: no
+  become: true
+
+  tasks:
+    - name: add users
+      user:
+        name: "{{ item.name }}"
+        state: present
+        groups: "{{ item.groups }}"
+
+      loop:
+        - {name: 'user4', groups: 'root'}
+        - {name: 'user5', groups: 'root'}

@@ -379,17 +379,17 @@ Writing this YAML code in `var-apache-playbook.yaml`
        msg: "Your name is {{username}}, Designation is {{designation}}"
 ```
 
-Run the var in playbook
+Run the var in playbook not mention the inventory
 ```bash
 ansible-playbook var-apache-playbook.yaml
 ```
-Or Using an ***inventory*** file named inventory and the ***jakir*** user to connect to the remote servers:
+Or Run the var in playbook with mention the inventory & username
 ```bash
 ansible-playbook -i inventory var-apache-playbook.yaml -u jakir
 ```
 
 ##### First var as a new file/files
-Create a var named is vars.yaml
+Create a var named is `vars.yaml`
 ```bash
 nano vars.yaml
 ```
@@ -414,15 +414,49 @@ Create a playbook named `install-apache.yaml` and type these yaml code.
       state=latest
 ```
 
-Run the var in playbook
+Run the var in playbook not mention the inventory
 ```bash
 ansible-playbook install-apache.yaml
 ```
-Or Using an ***inventory*** file named inventory to the remote servers:
+Or Run the var in playbook with mention the inventory & username
 ```bash
 ansible-playbook -i inventory install-apache.yaml -u jakir
 ```
+##### [Loops](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_loops.html#iterating-over-a-simple-list)
+Loops in Ansible are like shortcuts for doing the same task many times. Instead of repeating the same steps over and over again, we use a loop to do the task as many times as we need.
+Create a var named is `simple-loop.yaml`
+```bash
+nano vars.yaml
+```
+```YAML
+---
+- name: Name of simple list
+  hosts: all
+  gather_facts: no
+  become: true
+  tasks:
+    - name: Add services
+      user:
+         name: "{{ item }}" # call the from loop
+         state: present
+      loop:
+         - user1
+         - user2
+         - user3
+```
+Run the var in playbook not mention the inventory
+```bash
+ansible-playbook simple-loop.yaml
+```
+Or Run the var in playbook with mention the inventory & username
+```bash
+ansible-playbook -i inventory isimple-loop.yaml -u jakir
+```
 
+```bash
+ansible AnsibleGroup -m shell -a 'tail -3 /etc/passwd' # here 3 is number of user
+```
+***Other loop such as hash, dictionary see in '03-loops' directory***
 
 ### Courtesy of Jakir
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]
