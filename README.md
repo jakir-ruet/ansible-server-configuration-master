@@ -365,7 +365,7 @@ Create a playbook
 ```bash
 nano first_variable-playbook.yaml
 ```
-Create first var
+Create first var in playbook
 ```YAML
 ---
 - hosts: all
@@ -386,7 +386,20 @@ Or Using an ***inventory*** file named inventory and the ***jakir*** user to con
 ansible-playbook -i inventory first_variable-playbook.yaml -u jakir
 ```
 
+##### First variable ***new file/files***
+Create a var (first_vars-as-newfile)
+```bash
+nano first_vars-as-newfile.yaml
+```
+Type/Paste on (first_vars-as-newfile.yaml) variables as your expectation.
+```bash
+package_name: apache2
+```
 
+Create a (install_apache_var.yaml) playbook
+```bash
+
+```
 
 ### Courtesy of Jakir
 [![LinkedIn][linkedin-shield-jakir]][linkedin-url-jakir]
