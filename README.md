@@ -343,6 +343,7 @@ Ansible uses variables to manage differences between systems. With Ansible, you 
 - In your inventory, 
 - In reusable files or roles, or 
 - At the command line.
+
 ***NB:*** You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
 
 ***Valid variable names***
@@ -376,11 +377,11 @@ Create first var
      debug:
        msg: "Your name is {{username}}, Designation is {{designation}}"
 ```
-Using an ***inventory*** file named inventory and the ***jakir*** user to connect to the remote servers:
+Run the var in playbook
 ```bash
 ansible-playbook first_variable-playbook.yaml
 ```
-Or
+Or Using an ***inventory*** file named inventory and the ***jakir*** user to connect to the remote servers:
 ```bash
 ansible-playbook -i inventory first_variable-playbook.yaml -u jakir
 ```
