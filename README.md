@@ -138,7 +138,7 @@ Active the bash completion support we may install these.
 apt install python3-argcomplete
 activate-global-python-argcomplete3
 ```
-To allow nodes into the ansible server, create a group on the 'hosts' file. A group show as follows;
+To allow nodes into the ansible server, create a group on the 'hosts' file. A group shown as follows;
 ``` bash
 nano /etc/ansible/hosts
 ```
@@ -150,45 +150,42 @@ nano /etc/ansible/hosts
 And update the ansible.cfg file
 ``` bash
 nano /ete/ansible/ansible.cfg
-```
-Add/Update the following line in ansible.cfg file.
-``` bash
 [defaults]
-inventory = /etc/ansible/hosts
-sudo_user = root
+inventory = /etc/ansible/hosts # comment out or add
+sudo_user = root # comment out or add
 ```
-Create a user in three instances
+
+Create a user (same) in three instances
 ``` bash
 adduser ansible-usr
 passwd 054003
 ```
-To give 'sudo privileges' to 'ansible-usr' user in node instances.
+To give 'sudo privileges' to 'ansible-usr' user in ansible server instances.
 ``` bash
 sudo visudo
 ```
-And put this line below %admin user of three instances
+And put this line below ***%admin*** user of three instances
 ```bash
 %ansible-usr ALL=(ALL) NOPASSWD:ALL
 ```
-Login as ansible-usr user into three instances
+Login as ***ansible-usr*** user into three instances
 ```bash
 su - ansible-usr
 ```
 ```bash
 sudo apt-get update
 ```
-Try to connect node instances
+Try to connect node instances form ansible server instances.
 ```bash
 ssh 172.16.102.130 # Node #1 IP
 ```
-Here, access is denied, or a password is required. For this purpose, we uncomment/change the sshd_config file on three instances. It must be done under the root user of these instances.
+Give the permissions on three nodes under root user.
 ```bash
 sudo nano /etc/ssh/sshd_config
-```
-```bash
 PubkeyAuthentication yes
 PasswordAuthentication yes
 ```
+
 Restart the ssh service & check status
 ```bash
 service ssh restart
