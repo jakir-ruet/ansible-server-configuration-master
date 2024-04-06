@@ -160,55 +160,46 @@ Create a user (same) in three instances
 adduser ansible-usr
 passwd 054003
 ```
-To give 'sudo privileges' to 'ansible-usr' user in ansible server instances.
+To give 'sudo privileges' to 'ansible-usr' & put this line below ***%admin*** user of three instances
 ``` bash
 sudo visudo
-```
-And put this line below ***%admin*** user of three instances
-```bash
 %ansible-usr ALL=(ALL) NOPASSWD:ALL
 ```
+
 Login as ***ansible-usr*** user into three instances
 ```bash
 su - ansible-usr
-```
-```bash
 sudo apt-get update
 ```
-Try to connect node instances form ansible server instances.
-```bash
-ssh 172.16.102.130 # Node #1 IP
-```
-Give the permissions on three nodes under root user.
+
+Give the permissions on three nodes under user (not ansible-usr).
 ```bash
 sudo nano /etc/ssh/sshd_config
 PubkeyAuthentication yes
 PasswordAuthentication yes
-```
-
-Restart the ssh service & check status
-```bash
 service ssh restart
-```
-```bash
 service ssh status
 ```
-Login as 'ansible-usr' into ansible server.
+
+Login as 'ansible-usr' into three instances.
 ```bash
 su - ansible-usr # in server
 ```
-Try to access (two) node instances from the ansible server under the 'ansible-usr'. This is very disturbing because it is asking for the pass for each login.
+
+Try to connect nodes instances form ansible server instances under 'ansible-usr'.
 ```bash
-ssh 172.16.102.130 # node IP
+ssh 172.16.102.130 # Node #1 IP
 ```
 
-Disable the password asking each time while logging the ansible server (ansible-usr) to the node instance by generating ssh-key.
+It is asking password for each login, which is very disturbing. under the 'ansible-usr' of server we will disable the password in all node instances by generating ssh-key.
+
 ```bash
 ssh-keygen # not use the password
 ls -a
-cd .ssh
-ssh-copy-id ansible-usr@172.16.102.132 # from server instance (here 172.16.102.132 is node 1 IP)
-ssh-copy-id ansible-usr@172.16.102.133 # from server instance (here 172.16.102.133 is node 2 IP)
+cd .ssh # show keygen only
+ssh-copy-id ansible-usr@172.16.102.132 # from server instance (here 172.16.102.132 is node 1 private IP)
+ssh-copy-id ansible-usr@172.16.102.133 # from server instance (here 172.16.102.133 is node 2 private IP)
+su - ansible-usr # in server
 ```
 
 #### Ad-Hoc
@@ -218,7 +209,7 @@ ansible all -m ping
 ```
 Checking specific node group
 ```bash
-ansible AnsibleGroup -m ping
+ansible ansibleGroup -m ping
 ```
 Checking specific node group and specific node using index
 ```bash
