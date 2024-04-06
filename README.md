@@ -125,14 +125,10 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 Here we are installing on Ubuntu Server 22.04 Machine. We need three server VMs one is an Ansible server & other two work as nodes.
 ``` bash
 add-apt-repository ppa:ansible/ansible
-```
-``` bash
 sudo apt-get install ansible
-```
-
-``` bash
 ansible --version
 ```
+
 Active the bash completion support we may install these.
 ``` bash
 apt install python3-argcomplete
