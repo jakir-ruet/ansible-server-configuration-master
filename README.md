@@ -160,6 +160,7 @@ To give 'sudo privileges' to 'ansible-usr' & put this line below ***%admin*** us
 ``` bash
 sudo visudo
 %ansible-usr ALL=(ALL) NOPASSWD:ALL
+usermod -aG docker ansible-usr # add into user group
 ```
 
 Login as ***ansible-usr*** user into three instances
