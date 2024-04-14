@@ -106,11 +106,11 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
          ansible web_servers -i inventory_file -m command -a "uptime"
       ```
    8. ***API:***
-      Here API is special types of modules that work as transport in cloud services such Python API.
+      Here API is a special type of modules that work as transport in cloud services such as Python API.
    9. ***Plugin:***
       Plugins are modular pieces of code that add functionality to various parts of the Ansible execution process. They enhance the core functionality of Ansible by providing additional capabilities or by allowing you to customize and extend certain aspects of the automation process such as cache plugin, action plugin, callback plugin.
 
-#### How to works
+#### How it works
 
 ![Ansible Project!](/img/ansible-project.png 'ansible-project')
 
@@ -160,7 +160,7 @@ To give 'sudo privileges' to 'ansible-usr' & put this line below ***%admin*** us
 ``` bash
 sudo visudo
 %ansible-usr ALL=(ALL) NOPASSWD:ALL
-usermod -aG docker ansible-usr # add into user group
+usermod -aG docker ansible-usr # add user to docker group
 ```
 
 Login as ***ansible-usr*** user into three instances
