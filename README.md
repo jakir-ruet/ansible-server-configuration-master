@@ -96,7 +96,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
       ``` bash
          ansible <pattern> -i <inventory> -m <module> -a "<module_arguments>"
       ```
-      - pattern is Specifies the hosts/groups of hosts to which the command should be applied.
+      - pattern specifies the hosts/groups of hosts to which the command should be applied.
       - -i is inventory
       - -m is module
       - -a is module_arguments
@@ -183,19 +183,20 @@ Login as 'ansible-usr' into three instances.
 su - ansible-usr # in server
 ```
 
-Try to connect nodes instances form ansible server instances under 'ansible-usr'.
+Try to connect node instances form ansible server instances under 'ansible-usr'.
 ```bash
 ssh 172.16.102.130 # Node #1 IP
 ```
 
-It is asking password for each login, which is very disturbing. under the 'ansible-usr' of server we will disable the password in all node instances by generating ssh-key.
+It is asking password for each login, which is very disturbing. under the 'ansible-usr' of the server we will disable the password in all node instances by generating ssh-key.
 
 ```bash
-ssh-keygen # not use the password
+ssh-keygen # does not use the password
 ls -a
 cd .ssh # show keygen only
 ssh-copy-id ansible-usr@172.16.102.132 # from server instance (here 172.16.102.132 is node 1 private IP)
 ssh-copy-id ansible-usr@172.16.102.133 # from server instance (here 172.16.102.133 is node 2 private IP)
+ssh-copy-id localhost # if need
 su - ansible-usr # in server
 ```
 
@@ -208,7 +209,7 @@ Checking specific node group
 ```bash
 ansible ansibleGroup -m ping
 ```
-Checking specific node group and specific node using index
+Checking specific node groups and specific nodes using index
 ```bash
 ansible AnsibleGroup[0] -m ping
 ```
@@ -317,12 +318,12 @@ Write a playbook for apache remove.
     apt: 
       name: apache2
       state: absent
-  - name: remove php support for apache
+  - name: remove php support for Apache
     apt:
       name: libapache2-mod-php
       state: absent
 ```
-Remove apache to all nodes
+Remove Apache to all nodes
 ```bash
 ansible-playbook --ask-become-pass remove_apache.yaml
 ```
@@ -353,7 +354,7 @@ ansible AnsibleGroup -m setup -a 'filter=ansible_hostname'
 ```
 
 ##### First variable ***in playbook***
-Create first var in playbook
+Create the first var in a playbook
 ```bash
 nano var-apache-playbook.yaml
 ```
@@ -365,16 +366,16 @@ Writing this YAML code in `var-apache-playbook.yaml`
    - username: Jakir
    - designation: IT Manager
   tasks:
-   - name: my first variable in playbook
+   - name: my first variable in a playbook
      debug:
        msg: "Your name is {{username}}, Designation is {{designation}}"
 ```
 
-Run the var in playbook not mention the inventory
+Run the var in the playbook not mention the inventory
 ```bash
 ansible-playbook var-apache-playbook.yaml
 ```
-Or Run the var in playbook with mention the inventory & username
+Or Run the var in the playbook with mention of the inventory & username
 ```bash
 ansible-playbook -i inventory var-apache-playbook.yaml -u jakir
 ```
