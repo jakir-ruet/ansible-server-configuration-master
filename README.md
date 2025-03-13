@@ -444,7 +444,18 @@ ansible-playbook -i inventory simple-loop.yaml -u jakir
 ```bash
 ansible AnsibleGroup -m shell -a 'tail -3 /etc/passwd' # here 3 is number of user
 ```
-***Other loop such as hash, dictionary see in '03-loops' directory***
+**Other loop such as hash, dictionary see in '03-loops' directory**
+
+| **Feature**            | **Scripts**                             | **Ansible Playbooks**                      |
+|------------------------|-----------------------------------------|-------------------------------------------|
+| **Language**           | Bash, Python, etc.                      | YAML                                      |
+| **Execution**          | Manual or with a scheduler              | Automated, run via `ansible-playbook`      |
+| **Idempotency**        | Not inherent, must be coded             | Built-in, automatic idempotency           |
+| **Error Handling**     | Manual, custom coding required          | Built-in error handling and reporting     |
+| **Reusability**        | Low (hard to reuse across systems)      | High (roles, variables, playbooks)        |
+| **Complexity**         | Can get complex quickly                 | Modular and structured                    |
+| **Scalability**        | Limited scalability, requires manual parallel execution | Scales easily across thousands of systems |
+
 
 ## With Regards, `Jakir`
 
