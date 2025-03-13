@@ -446,6 +446,7 @@ ansible AnsibleGroup -m shell -a 'tail -3 /etc/passwd' # here 3 is number of use
 ```
 **Other loop such as hash, dictionary see in '03-loops' directory**
 
+Here Comparison of scripts vs Ansible playbooks
 | **Feature**            | **Scripts**                             | **Ansible Playbooks**                      |
 |------------------------|-----------------------------------------|-------------------------------------------|
 | **Language**           | Bash, Python, etc.                      | YAML                                      |
