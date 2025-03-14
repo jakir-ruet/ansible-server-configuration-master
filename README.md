@@ -1,12 +1,21 @@
 ## More About Me – [Take a Look!](http://www.mjakaria.me) 
 
 ### Ansible
-
 Ansible is a suite of software tools that enables infrastructure as code. It is open-source and the suite includes software provisioning, configuration management, and application deployment functionality.
 
-## Basic of Ansible
+Here Comparison of scripts vs Ansible playbooks
+| **Feature**        | **Scripts**                                             | **Ansible Playbooks**                     |
+| ------------------ | ------------------------------------------------------- | ----------------------------------------- |
+| **Language**       | Bash, Python, etc.                                      | YAML                                      |
+| **Execution**      | Manual or with a scheduler                              | Automated, run via `ansible-playbook`     |
+| **Idempotency**    | Not inherent, must be coded                             | Built-in, automatic idempotency           |
+| **Error Handling** | Manual, custom coding required                          | Built-in error handling and reporting     |
+| **Reusability**    | Low (hard to reuse across systems)                      | High (roles, variables, playbooks)        |
+| **Complexity**     | Can get complex quickly                                 | Modular and structured                    |
+| **Scalability**    | Limited scalability, requires manual parallel execution | Scales easily across thousands of systems |
 
-   1. ***Tasks:***
+## Basic of Ansible
+   1. **Tasks:**
       A task is the smallest unit of work within a playbook. A task represents a single action or operation that should be performed on a target host or a group of hosts.
       ``` YAML Format
          tasks:
@@ -15,11 +24,11 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
                  name: apache2
                  state: present
       ```
-   2. ***Control Node:***
+   2. **Control Node:**
       Refers to the machine where Ansible is installed and from which you manage and run Ansible tasks and playbooks. This is the system where you write, store, and execute your Ansible playbooks and where the Ansible command-line tools are installed.
-   3. ***Managed Nodes:***
+   3. **Managed Nodes:**
       It is a system or device that Ansible manages and configures. It is the target machine where Ansible executes tasks defined in playbooks.
-   4. ***Inventory:***
+   4. **Inventory:**
       The inventory is a configuration file that defines the hosts and groups of hosts that Ansible will manage. The inventory file specifies the target systems where Ansible playbooks and commands will be executed. It is a crucial component that helps Ansible understand the infrastructure it is working with.
       ``` YAML Format
          all:
@@ -43,7 +52,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
          [database_servers]
          db_server ansible_host=192.168.1.103
       ```
-   5. [***Modules:***](https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html)
+   5. [**Modules:**](https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html)
       Is a small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more on remote node. Some modules shown below list;
       - Cloud Modules
       - Clustering Modules
@@ -61,7 +70,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
                   src: /path/to/local/file.txt
                   dest: /path/on/remote/file.txt
       ```
-   6. ***Playbooks:***
+   6. **Playbooks:**
       Ansible playbook is a structured configuration file used to define a set of tasks and automate the execution of those tasks on a group of hosts. Playbooks are written in YAML. A playbook consists of one or more plays, where each play defines a set of tasks to be executed on a specified group of hosts.
 
       ``` YAML Format
@@ -86,7 +95,7 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
                     dest: /var/www/html/index.html
       ```
       
-   7. ***Ad-Hoc Command:***
+   7. **Ad-Hoc Command:**
       An ad-hoc command is a one-time command that you run from the command line, without the need to create a playbook. Ad-hoc commands are useful for performing quick tasks, checking the status of systems, or making immediate changes across a group of hosts.
       Syntax
       ``` bash
@@ -101,9 +110,9 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
       ``` bash
          ansible web_servers -i inventory_file -m command -a "uptime"
       ```
-   8. ***API:***
+   8. **API:**
       Here API is a special type of modules that work as transport in cloud services such as Python API.
-   9. ***Plugin:***
+   9. **Plugin:**
       Plugins are modular pieces of code that add functionality to various parts of the Ansible execution process. They enhance the core functionality of Ansible by providing additional capabilities or by allowing you to customize and extend certain aspects of the automation process such as cache plugin, action plugin, callback plugin.
 
 #### How it works
@@ -111,13 +120,21 @@ Ansible is a suite of software tools that enables infrastructure as code. It is 
 ![Ansible Project!](/img/ansible-project.png 'ansible-project')
 
 #### Architecture
-
 ![Ansible Architecture!](/img/ansible-architecture.png 'ansible-architecture')
 
 [CMDB: Configuration Management DataBase]
 
-#### Install Process
+#### Lab Setup
+By following some steps lab setup will be done.
+- Collect operating `VDI` file following website [**OSBoxes**](https://www.osboxes.org/)
+- Making a Operating System Template as per requirements
+- Create Ansible Controller Machine
+- Create Ansible Target1 Machine
+- Create Ansible Target2 Machine
+- Install MobaXterm following website [**MobaXterm**](https://mobaxterm.mobatek.net/)
+- Connect three machine into MobaXterm.
 
+#### Install Process
 Here we are installing on Ubuntu Server 22.04 Machine. We need three server VMs one is an Ansible server & other two work as nodes.
 ``` bash
 add-apt-repository ppa:ansible/ansible
@@ -152,14 +169,14 @@ Create a user (same) in three instances
 adduser ansible-usr
 passwd 054003
 ```
-To give 'sudo privileges' to 'ansible-usr' & put this line below ***%admin*** user of three instances
+To give 'sudo privileges' to 'ansible-usr' & put this line below **%admin** user of three instances
 ``` bash
 sudo visudo
 %ansible-usr ALL=(ALL) NOPASSWD:ALL
 usermod -aG docker ansible-usr # add user to docker group
 ```
 
-Login as ***ansible-usr*** user into three instances
+Login as **ansible-usr** user into three instances
 ```bash
 su - ansible-usr
 sudo apt-get update
@@ -326,15 +343,15 @@ ansible-playbook --ask-become-pass remove_apache.yaml
 It has been installed successfully try to see to the browser. You will show the default page of Apache.
 
 #### [Variable](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html)
-Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including ***lists*** and ***dictionaries***. You can define these variables 
+Ansible uses variables to manage differences between systems. With Ansible, you can execute tasks and playbooks on multiple different systems with a single command. To represent the variations among those different systems, you can create variables with standard YAML syntax, including **lists** and **dictionaries**. You can define these variables 
 - In your playbooks, 
 - In your inventory, 
 - In reusable files or roles, or 
 - At the command line.
 
-***NB:*** You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
+**NB:** You can also create variables during a playbook run by registering the return value or values of a task as a new variable.
 
-***Valid variable names***
+**Valid variable names**
 - Only letters (a...z, A...Z), numbers (1-9) & underscore (_) use in variable.
 - Variable may begin with underscore (_)
 - Such as myvar, my_var, _my_var.
@@ -349,7 +366,7 @@ Checking specific system information
 ansible AnsibleGroup -m setup -a 'filter=ansible_hostname'
 ```
 
-##### First variable ***in playbook***
+##### First variable **in playbook**
 Create the first var in a playbook
 ```bash
 nano var-apache-playbook.yaml
@@ -445,18 +462,6 @@ ansible-playbook -i inventory simple-loop.yaml -u jakir
 ansible AnsibleGroup -m shell -a 'tail -3 /etc/passwd' # here 3 is number of user
 ```
 **Other loop such as hash, dictionary see in '03-loops' directory**
-
-Here Comparison of scripts vs Ansible playbooks
-| **Feature**            | **Scripts**                             | **Ansible Playbooks**                      |
-|------------------------|-----------------------------------------|-------------------------------------------|
-| **Language**           | Bash, Python, etc.                      | YAML                                      |
-| **Execution**          | Manual or with a scheduler              | Automated, run via `ansible-playbook`      |
-| **Idempotency**        | Not inherent, must be coded             | Built-in, automatic idempotency           |
-| **Error Handling**     | Manual, custom coding required          | Built-in error handling and reporting     |
-| **Reusability**        | Low (hard to reuse across systems)      | High (roles, variables, playbooks)        |
-| **Complexity**         | Can get complex quickly                 | Modular and structured                    |
-| **Scalability**        | Limited scalability, requires manual parallel execution | Scales easily across thousands of systems |
-
 
 ## With Regards, `Jakir`
 
