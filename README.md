@@ -53,7 +53,7 @@ Here Comparison of scripts vs Ansible playbooks
          db_server ansible_host=192.168.1.103
       ```
    5. [**Modules:**](https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html)
-      Is a small scripts or programs that carry out specific tasks on the target hosts. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more on remote node. Some modules shown below list;
+      Is a small scripts or programs that carry out specific tasks on the target hosts, here `copy:` is a module. They can be written in various languages such as Python, PowerShell, Ruby, and more. Ansible modules are responsible for handling various aspects of system configuration and management, such as installing packages, managing files, starting services, and more on remote node. Some modules shown below list;
       - Cloud Modules
       - Clustering Modules
       - Database Modules
