@@ -135,10 +135,12 @@ By following some steps lab setup will be done.
 - Connect three machine into MobaXterm.
 
 #### Install Process
-Here we are installing on Ubuntu Server 22.04 Machine. We need three server VMs one is an Ansible server & other two work as nodes.
+Here we are installing only on Ubuntu Server 24.04 Machine. We need three server VMs one is an Ansible server & other two work as nodes.
 ``` bash
-add-apt-repository ppa:ansible/ansible
-sudo apt-get install ansible
+apt update
+apt install software-properties-common
+apt-add-repository --yes --update ppa:ansible/ansible
+apt install ansible
 ansible --version
 ```
 
@@ -149,12 +151,31 @@ activate-global-python-argcomplete3
 ```
 To allow nodes into the ansible server, create a group on the 'hosts' file. A group shown as follows;
 ``` bash
+nano /etc/ansible/hostname
 nano /etc/ansible/hosts
+# Try login target machine, server machine IP 192.168.68.165
+ssh 192.168.68.166
 ```
+Now let's check using inventory
+- Create directory `mkdir test-project` in server machine.
+- Create `inventory.txt` in `test-project` directory.
+- Write these on `inventory.txt`
+```bash
+target1 ansible_host=192.168.68.166 ansible_ssh_pass=054003
+target2 ansible_host=192.168.68.167 ansible_ssh_pass=054003
+```
+Let's check ping test. Here getting failed message. If change (just un-comment) `host_key_checking = False` in `ansible.cfg`. But its not `recommended` way.
+```bash
+ansible target1 -m ping -i inventory.txt
+ansible target2 -m ping -i inventory.txt
+```
+Here, IP & Password sync is recommended way.
+
+Let's try another way
 ``` bash
 [AnsibleGroup] # Group Name
-172.16.102.130 # Node #1 IP
-172.16.102.131 # Node #2 IP
+192.168.68.166 # Node #1 IP
+192.168.68.167 # Node #2 IP
 ```
 And update the ansible.cfg file
 ``` bash
@@ -198,7 +219,7 @@ su - ansible-usr # in server
 
 Try to connect node instances form ansible server instances under 'ansible-usr'.
 ```bash
-ssh 172.16.102.130 # Node #1 IP
+ssh 192.168.68.166 # Node #1 IP
 ```
 
 It is asking password for each login, which is very disturbing. under the 'ansible-usr' of the server we will disable the password in all node instances by generating ssh-key.
