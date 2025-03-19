@@ -1,3 +1,5 @@
+.ansible
+.venv
 .vscode/*
 .DS_Store
 .history
