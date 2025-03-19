@@ -60,8 +60,7 @@ Here Comparison of scripts vs Ansible playbooks
       - Database Modules (mysql_db, mysql_user, mongodb, mongodb_user etc.)
       - Messaging Modules (rabbitmq_user, rabbitmq_vhost, rabbitmq_binding etc.)
       - Inventory Modules (host, group, ini_file, yaml_inventory etc.)
-      - Commands Modules (command, shell, script etc.)
-      - and etc. 
+      - Commands Modules (command, shell, script etc.) etc. 
 
       ``` YAML Format
          - name: Copy a file to remote hosts
@@ -72,7 +71,7 @@ Here Comparison of scripts vs Ansible playbooks
                   src: /path/to/local/file.txt
                   dest: /path/on/remote/file.txt
       ```
-   6. **Playbooks:**
+   1. **Playbooks:**
       Ansible playbook is a structured configuration file used to define a set of tasks and automate the execution of those tasks on a group of hosts. Playbooks are written in YAML. A playbook consists of one or more plays, where each play defines a set of tasks to be executed on a specified group of hosts.
 
       ``` YAML Format
@@ -97,7 +96,7 @@ Here Comparison of scripts vs Ansible playbooks
                     dest: /var/www/html/index.html
       ```
       
-   7. **Ad-Hoc Command:**
+   2. **Ad-Hoc Command:**
       An ad-hoc command is a one-time command that you run from the command line, without the need to create a playbook. Ad-hoc commands are useful for performing quick tasks, checking the status of systems, or making immediate changes across a group of hosts.
       Syntax
       ``` bash
@@ -112,9 +111,9 @@ Here Comparison of scripts vs Ansible playbooks
       ``` bash
          ansible web_servers -i inventory_file -m command -a "uptime"
       ```
-   8. **API:**
+   3. **API:**
       Here API is a special type of modules that work as transport in cloud services such as Python API.
-   9. **Plugin:**
+   4. **Plugin:**
       Plugins are modular pieces of code that add functionality to various parts of the Ansible execution process. They enhance the core functionality of Ansible by providing additional capabilities or by allowing you to customize and extend certain aspects of the automation process such as cache plugin, action plugin, callback plugin.
 
 #### How it works
