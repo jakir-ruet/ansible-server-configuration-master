@@ -1,0 +1,6 @@
+---
+- name: Deploy Apache Web Server on Ubuntu
+  hosts: webservers
+  become: yes
+  roles:
+    - apache
