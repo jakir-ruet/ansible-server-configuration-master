@@ -1,0 +1,12 @@
+---
+- name: iterate over a dictionary
+  hosts: all
+  tasks:
+    - name: using dict2items
+      debug:
+        msg: "{{ item.key }} - {{item.value}}"
+      loop: "{{ tag_data | dict2items }}"
+      vars:
+        tag_data:
+          Environment: dev
+          Application: payment

@@ -1,0 +1,14 @@
+- name: Install and Configure MySQL
+  hosts: db-server 
+  tasks: 
+      - name: Install Pre-Requisites
+        yum: name=pre-req-packages state=present
+
+      - name: Install MySQL Packages 
+        yum: name=mysql state=present
+         
+      - name: Start MySQL Service 
+        service: name=mysql state=started
+
+      - name: Configure Database 
+        mysql_db: name=dbl state=present 

@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars:
+   - username: Jakir
+   - designation: IT Manager
+  tasks:
+   - name: my first variable in playbook
+     debug:
+       msg: "Your name is {{username}}, Designation is {{designation}}"

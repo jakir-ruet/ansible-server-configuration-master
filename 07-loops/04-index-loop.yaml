@@ -1,0 +1,12 @@
+---
+- name: iterate over index
+  hosts: all
+  tasks:
+    - name: iterate using index
+      debug:
+       msg: "The book {{ item.0+1 }} is {{ item.1 }}"
+      with_indexed_items:
+       - "Blue"
+       - "Red"
+       - "Green"
+       - "White"
