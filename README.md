@@ -120,7 +120,7 @@ Here Comparison of scripts vs Ansible playbooks
 
 ![Ansible Project!](/img/ansible-project.png 'ansible-project')
 
-##### Ansible running two ways, Here are the primary ways Ansible works:
+#### Ansible running two ways, Here are the primary ways Ansible works:
 - Ansible Command (Ad-Hoc Commands) - Imperative Approach
 - Ansible Playbook Command - Declarative Approach
 
