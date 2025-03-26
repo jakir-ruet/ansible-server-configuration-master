@@ -1,0 +1,13 @@
+all:
+  children:
+    docker_nodes:
+      hosts:
+        master:
+          ansible_host: 192.168.1.101
+        worker1:
+          ansible_host: 192.168.1.102
+        worker2:
+          ansible_host: 192.168.1.103
+  vars:
+    ansible_user: jakir
+    ansible_ssh_private_key_file: ~/.ssh/id_rsa
