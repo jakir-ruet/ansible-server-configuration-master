@@ -65,6 +65,15 @@ Create an Ansible playbook `k8s-cluster.yaml` that will following steps
 - Join worker nodes
 - Deploy Calico CNI
 
+Use SSH Keys Instead of Passwords
+```bash
+sudo dnf install sshpass -y
+ssh-keygen -t rsa -b 4096
+ssh-copy-id root@192.168.1.101
+ssh-copy-id root@192.168.1.102
+ssh-copy-id root@192.168.1.103
+```
+
 Lets Ping Test
 ```bash
 ansible all -i inventory.ini -m ping # Ping test

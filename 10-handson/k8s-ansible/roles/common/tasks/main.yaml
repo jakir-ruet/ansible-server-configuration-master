@@ -1,51 +1,64 @@
-- name: Update system packages
-  apt:
-    update_cache: yes
-    upgrade: yes
+- name: Update system packages (RHEL-based)
+  dnf:
+    name: "*"
+    state: latest
+  when: ansible_os_family == "RedHat"
+  become: yes
 
-- name: Install required dependencies
-  apt:
+- name: Install required dependencies (RHEL-based)
+  dnf:
     name:
-      - apt-transport-https
-      - ca-certificates
       - curl
-      - gnupg
-      - software-properties-common
+      - gnupg2
+      - ca-certificates
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
     state: present
+  when: ansible_os_family == "RedHat"
+  become: yes
 
-- name: Add Kubernetes GPG key
+- name: Add Kubernetes repository (RHEL-based)
   shell: |
-    curl -fsSL https://pkgs.k8s.io/core:/stable:/v{{ kubernetes_version[:4] }}/deb/Release.key | sudo gpg --dearmor -o /usr/share/keyrings/kubernetes-archive-keyring.gpg
+    cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+    [kubernetes]
+    name=Kubernetes
+    baseurl=https://pkgs.k8s.io/core:/stable:/v{{ kubernetes_version[:4] }}/rpm/
+    enabled=1
+    gpgcheck=1
+    gpgkey=https://pkgs.k8s.io/core:/stable:/v{{ kubernetes_version[:4] }}/rpm/repodata/repomd.xml.key
+    EOF
+  when: ansible_os_family == "RedHat"
+  become: yes
 
-- name: Add Kubernetes repository
-  shell: |
-    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ kubernetes_version[:4] }}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-
-- name: Install Kubernetes components
-  apt:
+- name: Install Kubernetes components (RHEL-based)
+  dnf:
     name:
-      - kubelet={{ kubernetes_version }}-00
-      - kubeadm={{ kubernetes_version }}-00
-      - kubectl={{ kubernetes_version }}-00
+      - kubelet-{{ kubernetes_version }}-0
+      - kubeadm-{{ kubernetes_version }}-0
+      - kubectl-{{ kubernetes_version }}-0
     state: present
-    allow_downgrade: yes
+    disable_excludes: kubernetes
+  when: ansible_os_family == "RedHat"
+  become: yes
 
-- name: Hold kubeadm, kubelet, and kubectl at current versions
-  dpkg_selections:
-    name: "{{ item }}"
-    selection: hold
-  loop:
-    - kubelet
-    - kubeadm
-    - kubectl
+- name: Enable kubelet service
+  systemd:
+    name: kubelet
+    enabled: yes
+    state: started
+  when: ansible_os_family == "RedHat"
+  become: yes
 
-- name: Disable swap
+- name: Disable swap (RHEL-based)
   command: swapoff -a
   when: ansible_swaptotal_mb > 0
+  become: yes
 
-- name: Remove swap entry from /etc/fstab
+- name: Remove swap entry from /etc/fstab (RHEL-based)
   replace:
     path: /etc/fstab
     regexp: '^.*\sswap\s.*$'
     replace: ''
   when: ansible_swaptotal_mb > 0
+  become: yes
