@@ -1,0 +1,51 @@
+- name: Update system packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install required dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - software-properties-common
+    state: present
+
+- name: Add Kubernetes GPG key
+  shell: |
+    curl -fsSL https://pkgs.k8s.io/core:/stable:/v{{ kubernetes_version[:4] }}/deb/Release.key | sudo gpg --dearmor -o /usr/share/keyrings/kubernetes-archive-keyring.gpg
+
+- name: Add Kubernetes repository
+  shell: |
+    echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v{{ kubernetes_version[:4] }}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+- name: Install Kubernetes components
+  apt:
+    name:
+      - kubelet={{ kubernetes_version }}-00
+      - kubeadm={{ kubernetes_version }}-00
+      - kubectl={{ kubernetes_version }}-00
+    state: present
+    allow_downgrade: yes
+
+- name: Hold kubeadm, kubelet, and kubectl at current versions
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  loop:
+    - kubelet
+    - kubeadm
+    - kubectl
+
+- name: Disable swap
+  command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+
+- name: Remove swap entry from /etc/fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^.*\sswap\s.*$'
+    replace: ''
+  when: ansible_swaptotal_mb > 0
