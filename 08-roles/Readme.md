@@ -15,10 +15,10 @@ ansible-galaxy role init test-role
 An Ansible role consists of the following key components:
 
 1. **Tasks**  
-   The core actions or steps that the role performs. These are typically defined in the `tasks/main.yml` file and include actions like installing packages, starting services, or configuring files.
+   The core actions or steps that the role performs. These are typically defined in the `tasks/main.yaml` file and include actions like installing packages, starting services, or configuring files.
 
 2. **Handlers**  
-   Handlers are tasks that are triggered by changes in other tasks. These are typically used to restart services, reload configurations, or take some other action based on changes made in previous tasks. Handlers are defined in the `handlers/main.yml` file.
+   Handlers are tasks that are triggered by changes in other tasks. These are typically used to restart services, reload configurations, or take some other action based on changes made in previous tasks. Handlers are defined in the `handlers/main.yaml` file.
 
 3. **Files**  
    This directory contains static files that need to be transferred to managed hosts. For example, configuration files or scripts that must be placed on the target system.
@@ -27,13 +27,13 @@ An Ansible role consists of the following key components:
    Jinja2 templates that can be dynamically rendered with variables and then transferred to managed hosts. These templates allow for the generation of configuration files, scripts, and other content based on the host's specific environment.
 
 5. **Vars**  
-   Variables specific to the role. These are typically defined in the `vars/main.yml` file and can be used to configure the behavior of the tasks in the role.
+   Variables specific to the role. These are typically defined in the `vars/main.yaml` file and can be used to configure the behavior of the tasks in the role.
 
 6. **Defaults**  
-   Default variables for the role, stored in the `defaults/main.yml` file. These can be overridden in the playbook, inventory, or by other higher-priority sources.
+   Default variables for the role, stored in the `defaults/main.yaml` file. These can be overridden in the playbook, inventory, or by other higher-priority sources.
 
 7. **Meta**  
-   Contains metadata about the role, such as role dependencies, author information, and other information. This file is stored in the `meta/main.yml` file.
+   Contains metadata about the role, such as role dependencies, author information, and other information. This file is stored in the `meta/main.yaml` file.
 
 8. **Library**  
    Custom Ansible modules or plugins that are used within the role. If the role needs specialized functionality not provided by standard Ansible modules, custom modules can be placed here.
@@ -49,15 +49,15 @@ Here is the standard directory structure for an Ansible role:
 ```bash
 <role_name>/
   ├── defaults/
-  │   └── main.yml
+  │   └── main.yaml
   ├── files/
   ├── handlers/
-  │   └── main.yml
+  │   └── main.yaml
   ├── meta/
-  │   └── main.yml
+  │   └── main.yaml
   ├── tasks/
-  │   └── main.yml
+  │   └── main.yaml
   ├── templates/
   ├── vars/
-      └── main.yml
+      └── main.yaml
 ```

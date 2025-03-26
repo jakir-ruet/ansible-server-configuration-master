@@ -5,16 +5,16 @@ In **Ansible**, variables are a powerful and flexible way to customize playbooks
 ```bash
 inventory/
   host_vars/
-    web01.example.com.yml
-    db01.example.com.yml
+    web01.example.com.yaml
+    db01.example.com.yaml
 ```
 
 2. Group Variables
 ```bash
 inventory/
   group_vars/
-    webservers.yml
-    dbservers.yml
+    webservers.yaml
+    dbservers.yaml
 
 ```
 

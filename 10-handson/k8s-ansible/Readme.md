@@ -82,5 +82,6 @@ ansible all -i inventory.ini -m ping -vvvv # Ping test with debugging
 
 Lets Run the Playbook
 ```bash
-ansible-playbook -i inventory.ini site.yml
+ansible-playbook -i inventory.ini site.yaml
+ansible-playbook -i inventory.ini site.yaml -vvvv # In debugging
 ```
