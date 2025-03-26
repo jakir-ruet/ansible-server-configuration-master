@@ -1,0 +1,36 @@
+- name: Initialize Kubernetes Master
+  hosts: master
+  become: true
+  vars_files:
+    - vars.yaml
+
+  tasks:
+    - name: Initialize Kubernetes master
+      command: kubeadm init --pod-network-cidr={{ pod_network_cidr }}
+      register: k8s_init_output
+      changed_when: "'[init]' in k8s_init_output.stdout"
+
+    - name: Create .kube directory
+      file:
+        path: /root/.kube
+        state: directory
+        mode: '0755'
+
+    - name: Copy kubeconfig file
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /root/.kube/config
+        remote_src: yes
+        mode: '0644'
+
+    - name: Generate worker join command
+      shell: kubeadm token create --print-join-command
+      register: kubeadm_join_command
+      changed_when: false
+
+    - name: Store worker join command
+      set_fact:
+        worker_join_cmd: "{{ kubeadm_join_command.stdout_lines[0] }}"
+
+    - name: Deploy Calico Network Plugin
+      shell: kubectl apply -f {{ calico_manifest_url }}
