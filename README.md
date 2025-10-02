@@ -128,6 +128,30 @@ ansible web_servers -i inventory_file -m command -a "uptime"
 9. **Plugin:**
    Plugins are modular pieces of code that add functionality to various parts of the Ansible execution process. They enhance the core functionality of Ansible by providing additional capabilities or by allowing you to customize and extend certain aspects of the automation process such as cache plugin, action plugin, callback plugin.
 
+### Vault
+
+A Vault is a feature that lets you `encrypt sensitive` data (like passwords, private keys, API tokens, etc.) so they can be safely stored in playbooks, roles, or variable files without exposing secrets in plain text.
+
+#### Key Points about Ansible Vault
+
+- Encrypts YAML files or even individual variables.
+- Uses AES256 encryption by default.
+- Requires a password or key file to decrypt and use secrets during playbook execution.
+- Keeps your sensitive information safe in version control (Git, etc.).
+
+#### Common vault commands
+
+| Example                                                            | Description                                    |
+| ------------------------------------------------------------------ | ---------------------------------------------- |
+| `ansible-vault create secrets.yaml`                                | Create a new encrypted file                    |
+| `ansible-vault encrypt vars.yaml`                                  | Encrypt an existing file                       |
+| `ansible-vault decrypt secrets.yaml`                               | Decrypt an encrypted file back to plain text   |
+| `ansible-vault edit secrets.yaml`                                  | Open and edit an encrypted file in editor      |
+| `ansible-vault view secrets.yaml`                                  | View contents of an encrypted file (read-only) |
+| `ansible-vault rekey secrets.yaml`                                 | Change the vault password for a file           |
+| `ansible-playbook site.yaml --ask-vault-pass`                      | Run a playbook with vault password prompt      |
+| `ansible-playbook site.yaml --vault-password-file .vault_pass.txt` | Run a playbook using a password file           |
+
 #### How it works
 
 ![Ansible Project!](/img/ansible-project.png 'ansible-project')
